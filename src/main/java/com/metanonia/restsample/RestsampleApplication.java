@@ -16,7 +16,7 @@ public class RestsampleApplication {
         SpringApplication.run(RestsampleApplication.class, args);
     }
 
-    // http://host:port/
+    // http://host:port/swagger-ui/index.html
     @Bean
     public OpenAPI customOpenAPI(@Value("${springdoc.version}") String appVersion) {
         return new OpenAPI()
