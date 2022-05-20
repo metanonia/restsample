@@ -1,10 +1,14 @@
 package com.metanonia.restsample.controller;
 
+import com.metanonia.restsample.service.CommonService;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.UUID;
 
+@Slf4j
 @RestController
 @RequestMapping("/private")
 public class PrivateController {

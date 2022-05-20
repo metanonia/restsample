@@ -1,12 +1,16 @@
 package com.metanonia.restsample.controller;
 
+import com.metanonia.restsample.service.CommonService;
 import com.metanonia.restsample.service.SampleService;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.UUID;
 
+@Slf4j
 @RestController
 @RequestMapping("/api")
 public class SampleController {
@@ -71,5 +75,11 @@ public class SampleController {
     @GetMapping("/depth")
     public String depth() {
         return sampleService.getDepth();
+    }
+
+
+    @GetMapping("/key")
+    public String getKey() {
+        return sampleService.genKey();
     }
 }
