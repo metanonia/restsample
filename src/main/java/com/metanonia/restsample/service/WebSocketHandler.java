@@ -39,8 +39,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
         log.info("client{} connect closed reason {}", session.getRemoteAddress(), status.getReason());
+        sessions.remove(session);
     }
-
 
     public void sendMessage(String sessionId, TextMessage msg) {
         for (WebSocketSession webSocketSession : sessions) {
@@ -51,6 +51,18 @@ public class WebSocketHandler extends TextWebSocketHandler {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+        }
+    }
+
+    public void sendAll(String message) {
+        for (WebSocketSession webSocketSession : sessions) {
+            try {
+                TextMessage msg = new TextMessage(message);
+                webSocketSession.sendMessage(msg);
+                log.info("sendMessage " + webSocketSession.getId() + " " + msg.getPayload());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
